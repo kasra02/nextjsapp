@@ -1,9 +1,17 @@
 import axios from 'axios'
+import Link from 'next/link'
 
 const Post = ({posts=[]}) => {
     return (
         <div>
-            {posts.map(post=><div>{post.title}</div>)}
+            {posts.map(post=>(
+                <div>
+                    {post.title}
+                    <Link href={`/posts/${post.id}`}>
+                        <a> link to {post.id} </a>
+                    </Link>
+                </div>
+            ))}
         </div>
     );
 };
