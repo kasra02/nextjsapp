@@ -1,9 +1,34 @@
-const Post = () => {
+import axios from 'axios'
+
+const Post = ({posts=[]}) => {
     return (
         <div>
-            posts
+            {posts.map(post=><div>{post.title}</div>)}
         </div>
     );
 };
 
-export default Post;
+export async function getStaticProps(context) {
+    const {data:posts} = await axios.get('https://jsonplaceholder.typicode.com/posts')
+
+    if(!posts){
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false,
+            },
+        }
+    }
+
+    return{
+        props:{
+            posts
+        }
+    }
+
+}
+
+
+
+
+export default Post
