@@ -1,18 +1,24 @@
 import axios from 'axios'
 import Link from 'next/link'
+import { List, Typography, Divider,Card } from 'antd';
 
 const Post = ({posts=[]}) => {
     return (
-        <div>
-            {posts.map(post=>(
-                <div>
-                    {post.title}
-                    <Link href={`/posts/${post.id}`}>
-                        <a> link to {post.id} </a>
-                    </Link>
-                </div>
-            ))}
-        </div>
+        <List
+            grid={{ gutter: 1, xs: 1, sm:1, md:2, lg:3 }}
+            dataSource={posts}
+            renderItem={item => (
+                <List.Item>
+                    <Card title={item.title}>
+                        {item.body.substring(1,40)}
+                        <Link href={`posts/${item.id}`}><a>
+                            ادامه
+                        </a></Link>
+                    </Card>
+                </List.Item>
+            )}
+        />
+
     );
 };
 

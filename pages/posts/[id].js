@@ -1,13 +1,45 @@
 import axios from 'axios'
-
+import { Tabs,Typography } from 'antd';
+const { TabPane } = Tabs;
+const { Title } = Typography;
 
 const PostDetail = ({post={}}) => {
     return (
-        <div>
-            {post.title}
+        <div className="card-container">
+            <Title>{post.title}</Title>
+            <Tabs type="card">
+                <TabPane tab="Article" key="1">
+                    <p>{post.body}</p>
+                </TabPane>
+                <TabPane tab="Tab Title 2" key="2">
+                    <p>Content of Tab Pane 2</p>
+                    <p>Content of Tab Pane 2</p>
+                    <p>Content of Tab Pane 2</p>
+                </TabPane>
+                <TabPane tab="Tab Title 3" key="3">
+                    <p>Content of Tab Pane 3</p>
+                    <p>Content of Tab Pane 3</p>
+                    <p>Content of Tab Pane 3</p>
+                </TabPane>
+            </Tabs>
         </div>
     );
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export async function getStaticPaths() {
 
